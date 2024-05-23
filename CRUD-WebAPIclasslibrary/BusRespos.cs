@@ -17,9 +17,27 @@ namespace CRUD_WebAPIclasslibrary
                 var connection = config.GetConnectionString("Dbconnection");
 
             }
-            public void SPsignup()
+            public void SPsignup(Busdetails reg)
             {
-                var signup = $"insert into ";
+                try
+                {
+                    var signup = $"insert into Busdetails values ('{reg.BusID}'),'{reg.BusName}','{reg.DriverMobilenumber}','{reg.StartPoint}','{reg.Destination}','{reg.Fair}','{reg.NoofPassenger}')";
+                    connection.open();
+                    connection.execute(signup);
+                    connection.close();
+                }
+                catch(SqlException ex)
+                {
+                    throw;
+                }
+                catch(Exception)
+                {
+                    throw;
+                }
+            }
+            public IEnumerable<Busdetails>SPshowall()
+            {
+
             }
         }
         
