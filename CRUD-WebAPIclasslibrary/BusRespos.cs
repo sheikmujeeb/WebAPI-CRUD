@@ -7,9 +7,11 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using Dapper;
 
+
+
 namespace CRUD_WebAPIclasslibrary
 {
-    class BusRespos
+    class BusRepos
     {
        public class Repostory
         {
@@ -20,7 +22,7 @@ namespace CRUD_WebAPIclasslibrary
 
             }
             public void SPsignup(Busdetails reg)
-            {
+            { 
                 try
                 {
                     var signup = $"insert into Busdetails values ('{reg.BusID}'),'{reg.BusName}','{reg.DriverMobilenumber}','{reg.StartPoint}','{reg.Destination}','{reg.Fair}','{reg.NoofPassenger}')";
