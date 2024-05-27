@@ -22,7 +22,7 @@ values('SMT',9876534210,'Palani','Coimbatore',120,3)
 select * from Busdetails
 
 -- Creating a Stored Procedure----------------------------------------------------------------------------
-create or alter procedure SPsignup
+create procedure SPLogin
 (
 @BusName  nvarchar(50) ,
 @DriverMobilenumber bigint,

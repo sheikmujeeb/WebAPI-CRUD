@@ -6,71 +6,72 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using Dapper;
+using DataAccessLayer;
 
 
 
 namespace CRUD_WebAPIclasslibrary
 {
-    class BusRepos
+    public class BusRepos
     {
-       public class Repostory
-        {
-            IConfiguration config;
-            public Repostory(IConfiguration config)
-            {
-                var connection = config.GetConnectionString("Dbconnection");
+        string connectionstring = "Data Source=DESKTOP-BLBGEHJ\\SQLEXPRESS;Initial Catalog=CRUD Operation;User Id=sa;Password=Anaiyaan@123;";
+        SqlConnection con;
 
+
+        public  BusRepos()
+            {
+               con = new SqlConnection(connectionstring);
             }
-            public void SPsignup(Busdetails reg)
-            { 
-                try
-                {
-                    var signup = $"insert into Busdetails values ('{reg.BusID}'),'{reg.BusName}','{reg.DriverMobilenumber}','{reg.StartPoint}','{reg.Destination}','{reg.Fair}','{reg.NoofPassenger}')";
-                    connection.open();
-                    connection.execute(signup);
-                    connection.close();
-                }
-                catch(SqlException ex)
-                {
-                    throw;
-                }
-                catch(Exception)
-                {
-                    throw;
-                }
-            }
-            public IEnumerable<Busdetails>SPshowall()
+            public void SPlogin(Busdetails reg)
             {
                 try
                 {
-                    var showall = $"select BusID,BusName,DriverMobilennumber,StartPoint,Destination,Fair,NoofPassenger from Busdetails ";
-                    connection.open();
-                    var match = connection.Query<Busdetails>(showall);
-                    connection.close();
+                    var signup =( $"exec SPlogin '{reg.BusName}',{reg.DriverMobilenumber},'{reg.StartPoint}','{reg.Destination}',{reg.Fair},{reg.NoofPassenger}");
+                    con.Open();
+                    con.Execute(signup);
+                    con.Close();
+                }
+                catch (SqlException)
+                {
+                    throw;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            public IEnumerable<Busdetails> SPselectall()
+            {
+                try
+                {
+                    var showall = $"exec SPselectall ";
+                    con.Open();
+                    var match = con.Query<Busdetails>(showall);
+                    con.Close();
                     return match;
                 }
-                catch(Sqlexception ex)
+                catch (SqlException ex)
                 {
                     throw;
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     throw;
                 }
 
             }
-            public void SPupdate(string start ,string end ,int far ,int ticket)
+            public void SPupdate(int id,string start, string end, int far, int ticket)
             {
                 try
                 {
-                    var update = $"exec SPupdate '{start}''{end}''{far}''{ticket}';";
+                    var update = $"exec SPupdate {id},'{start}','{end}',{far},{ticket};";
                     Console.WriteLine("Updated Successfully");
-                    connection.open();
-                    connection.execute(update);
-                    connection.close();
+                    con.Open();
+                    con.Execute(update);
+                    con.Close();
 
                 }
-                catch (Sqlexception ex)
+                catch (SqlException ex)
                 {
                     throw;
                 }
@@ -85,11 +86,11 @@ namespace CRUD_WebAPIclasslibrary
                 {
                     var delete = $"exec SPremove '{busname}'";
                     Console.WriteLine("Deleted Sucessfully");
-                    connection.open();
-                    connection.execute(delete);
-                    connection.close();
+                    con.Open();
+                    con.Execute(delete);
+                    con.Close();
                 }
-                catch (Sqlexception ex)
+                catch (SqlException ex)
                 {
                     throw;
                 }
@@ -98,18 +99,18 @@ namespace CRUD_WebAPIclasslibrary
                     throw;
                 }
             }
-            public IEnumerable<Busdetails>SPsearch(string name)
+            public IEnumerable<Busdetails> SPsearch(string name)
             {
                 try
                 {
                     var search = $"exec SPsearch '{name}'";
-                    connection.open();
-                    var match = connection.Query<Busdetails>(search);
-                    connection.close();
+                    con.Open();
+                    var match = con.Query<Busdetails>(search);
+                    con.Close();
                     return match;
 
                 }
-                catch (Sqlexception ex)
+                catch (SqlException ex)
                 {
                     throw;
                 }
@@ -119,6 +120,7 @@ namespace CRUD_WebAPIclasslibrary
                 }
             }
         }
-        
+
     }
-}
+
+
