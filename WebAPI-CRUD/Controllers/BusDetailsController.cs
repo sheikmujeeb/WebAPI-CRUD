@@ -45,7 +45,7 @@ namespace WebAPI_CRUD.Controllers
 
         // PUT api/<BusDetailsController>/5
         [HttpPut("{id}")]
-        public void Put( int id,[FromBody] string start, string end, int far, int ticket)
+        public void Put( int id, string start, string end, int far, int ticket,[FromBody]Busdetails value)
         {
             newreg.SPupdate(id,start,end,far,ticket);
         }
