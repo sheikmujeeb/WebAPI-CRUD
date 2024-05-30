@@ -60,26 +60,26 @@ namespace CRUD_WebAPIclasslibrary
                 }
 
             }
-            public void SPupdate(int id,string start, string end, int far, int ticket)
-            {
-                try
-                {
-                    var update = $"exec SPupdate {id},'{start}','{end}',{far},{ticket};";
-                    Console.WriteLine("Updated Successfully");
-                    con.Open();
-                    con.Execute(update);
-                    con.Close();
+            //public void SPupdate(int id,string start, string end, int far, int ticket)
+            //{
+            //    try
+            //    {
+            //        var update = $"exec SPupdate {id},'{start}','{end}',{far},{ticket};";
+            //        Console.WriteLine("Updated Successfully");
+            //        con.Open();
+            //        con.Execute(update);
+            //        con.Close();
 
-                }
-                catch (SqlException ex)
-                {
-                    throw;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
+            //    }
+            //    catch (SqlException ex)
+            //    {
+            //        throw;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        throw;
+            //    }
+            //}
             public void SPremove(string busname)
             {
                 try
