@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.34031.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI-CRUD", "WebAPI-CRUD\WebAPI-CRUD.csproj", "{D85E3617-1E08-47D3-A134-3BE503127214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUD-WebAPIclasslibrary", "CRUD-WebAPIclasslibrary\CRUD-WebAPIclasslibrary.csproj", "{F0F232E2-30D1-4452-81A4-9BA71C880443}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRUD-WebAPIclasslibrary", "CRUD-WebAPIclasslibrary\CRUD-WebAPIclasslibrary.csproj", "{F0F232E2-30D1-4452-81A4-9BA71C880443}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
